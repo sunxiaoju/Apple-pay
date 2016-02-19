@@ -40,9 +40,10 @@
     if ([PKPaymentAuthorizationViewController canMakePayments]) {
         
         PKPaymentRequest *request = [[PKPaymentRequest alloc] init];
-        PKPaymentSummaryItem *widget = [PKPaymentSummaryItem summaryItemWithLabel:@"鸡蛋" amount:[NSDecimalNumber decimalNumberWithString:@"0.01"]];
-        PKPaymentSummaryItem *allMoney = [PKPaymentSummaryItem summaryItemWithLabel:@"总金额" amount:[NSDecimalNumber decimalNumberWithString:@"0.01"] type:PKPaymentSummaryItemTypeFinal];
-        request.paymentSummaryItems = @[widget,allMoney];
+        PKPaymentSummaryItem *widget = [PKPaymentSummaryItem summaryItemWithLabel:@"面包" amount:[NSDecimalNumber decimalNumberWithString:@"5.6"]];
+        PKPaymentSummaryItem *carModel = [PKPaymentSummaryItem summaryItemWithLabel:@"汽车模型" amount:[NSDecimalNumber decimalNumberWithString:@"30.0"]];
+        PKPaymentSummaryItem *allMoney = [PKPaymentSummaryItem summaryItemWithLabel:@"总金额" amount:[NSDecimalNumber decimalNumberWithString:@"35.6"] type:PKPaymentSummaryItemTypeFinal];
+        request.paymentSummaryItems = @[widget,carModel,allMoney];
         
         request.countryCode = @"CN";
         request.currencyCode = @"CHW";
