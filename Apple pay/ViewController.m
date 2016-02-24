@@ -36,26 +36,27 @@
 
 -(void)ApplePay{
 
+    
     //判断手机是否支持Apple Pay
     if ([PKPaymentAuthorizationViewController canMakePayments]) {
         
         PKPaymentRequest *request = [[PKPaymentRequest alloc] init];
-        PKPaymentSummaryItem *widget = [PKPaymentSummaryItem summaryItemWithLabel:@"面包" amount:[NSDecimalNumber decimalNumberWithString:@"5.6"]];
-        PKPaymentSummaryItem *carModel = [PKPaymentSummaryItem summaryItemWithLabel:@"汽车模型" amount:[NSDecimalNumber decimalNumberWithString:@"30.0"]];
-        PKPaymentSummaryItem *allMoney = [PKPaymentSummaryItem summaryItemWithLabel:@"总金额" amount:[NSDecimalNumber decimalNumberWithString:@"35.6"] type:PKPaymentSummaryItemTypeFinal];
-        request.paymentSummaryItems = @[widget,carModel,allMoney];
+        PKPaymentSummaryItem *widget = [PKPaymentSummaryItem summaryItemWithLabel:@"面包" amount:[NSDecimalNumber decimalNumberWithString:@"0.1"]];
+//        PKPaymentSummaryItem *carModel = [PKPaymentSummaryItem summaryItemWithLabel:@"汽车模型" amount:[NSDecimalNumber decimalNumberWithString:@"0.1"]];
+//        PKPaymentSummaryItem *allMoney = [PKPaymentSummaryItem summaryItemWithLabel:@"总金额" amount:[NSDecimalNumber decimalNumberWithString:@"0.2"] type:PKPaymentSummaryItemTypeFinal];
+        request.paymentSummaryItems = @[widget/*,carModel,allMoney*/];
         
         request.countryCode = @"CN";
-        request.currencyCode = @"CHW";
+        request.currencyCode = @"CNY";
         //限制支付卡变类型 PKPaymentNetworkChinaUnionPay:中国银联卡
-        request.supportedNetworks = @[PKPaymentNetworkChinaUnionPay,PKPaymentNetworkVisa,PKPaymentNetworkMasterCard];
+        request.supportedNetworks = @[PKPaymentNetworkChinaUnionPay,PKPaymentNetworkVisa,PKPaymentNetworkChinaUnionPay];
         request.merchantIdentifier = @"merchant.com.chedao.Applepay";
         /*
          PKMerchantCapabilityCredit NS_ENUM_AVAILABLE_IOS(9_0)   = 1UL << 2,   // 支持信用卡
          PKMerchantCapabilityDebit  NS_ENUM_AVAILABLE_IOS(9_0)   = 1UL << 3    // 支持借记卡
          */
         //支持的卡片类型
-        request.merchantCapabilities = PKMerchantCapabilityDebit;
+        request.merchantCapabilities = PKMerchantCapabilityDebit | PKMerchantCapability3DS | PKMerchantCapabilityEMV | PKMerchantCapabilityCredit;
         //增加邮箱地址信息 可不填
 //        request.requiredBillingAddressFields = PKAddressFieldEmail | PKAddressFieldPostalAddress;
         PKPaymentAuthorizationViewController *paymentPant = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:request];
@@ -89,27 +90,44 @@
 #pragma  mark ==== 支付状态
 -(void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion{
 
-    NSLog(@"payment was authorized:%@",payment);
-    BOOL asycSuccessful = FALSE;
-    if (asycSuccessful) {
+       completion(status);
+
+   
+    
+    //模拟付款成功
+    BOOL success = YES;
+    if (success) {
         completion(PKPaymentAuthorizationStatusSuccess);
-        NSLog(@"支付成功");
-        
-    }else{
+        NSLog(@"success");
+    }else {
         completion(PKPaymentAuthorizationStatusFailure);
-        NSLog(@"支付失败");
-        
+        NSLog(@"fail");
     }
+//
+//    NSLog(@"payment was authorized:%@",payment);
+//    BOOL asycSuccessful = FALSE;
+//    if (asycSuccessful) {
+//        completion(PKPaymentAuthorizationStatusSuccess);
+//        NSLog(@"支付成功");
+//        
+//    }else{
+//        completion(PKPaymentAuthorizationStatusFailure);
+//        NSLog(@"支付失败");
+//        
+//    }
     
     
     
 }
 -(void)paymentAuthorizationViewControllerWillAuthorizePayment:(PKPaymentAuthorizationViewController *)controller
-{}
+{
+
+    NSLog(@"sdiofhjo");
+
+}
 #pragma mark ==== 支付完成
 -(void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller{
     [controller dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 

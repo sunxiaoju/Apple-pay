@@ -357,7 +357,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chedao.Applepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "73cf6adc-d1b5-4694-9aea-ca6aa9223a00";
 			};
 			name = Debug;
 		};
@@ -372,7 +372,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chedao.Applepay;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "73cf6adc-d1b5-4694-9aea-ca6aa9223a00";
 			};
 			name = Release;
 		};
@@ -419,6 +419,7 @@
 				6F9B3ED31C76DEF80066F0EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6F9B3ED41C76DEF80066F0EE /* Build configuration list for PBXNativeTarget "Apple payUITests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +428,7 @@
 				6F9B3ED61C76DEF80066F0EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
