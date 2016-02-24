@@ -90,9 +90,7 @@
 #pragma  mark ==== 支付状态
 -(void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion{
 
-       completion(status);
 
-   
     
     //模拟付款成功
     BOOL success = YES;
